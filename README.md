@@ -1,73 +1,50 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Clean Architecture Node.js com Typescript, Node.JS e Nest.JS
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Este repositório contém um projeto Node.js desenvolvido com o framework Nest.js utilizando TypeScript e seguindo os princípios da Clean Architecture. O objetivo deste projeto é demonstrar a implementação de uma arquitetura limpa, separando as responsabilidades em camadas e aplicando injeção de dependências para facilitar a manutenção e a escalabilidade do código.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Tecnologias Utilizadas
+- Node.js
+- Nest.js
+- TypeScript
 
-## Description
+## Conceitos Demonstrados
+###  Clean Architecture
+A Clean Architecture é um estilo de arquitetura de software que promove a separação de preocupações em camadas, com uma clara definição de dependências, tornando o código mais modular e testável. Neste projeto, as camadas são organizadas da seguinte forma:
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+### Presentation: 
+Camada responsável pela interação com o cliente, incluindo controladores, roteamento e DTOs (Data Transfer Objects).
 
-## Installation
+### Application: 
+Camada que contém os casos de uso da aplicação, onde são implementadas as regras de negócio.
 
-```bash
-$ yarn install
-```
+### Domain: 
+Camada que define os modelos de domínio e as interfaces dos repositórios.
 
-## Running the app
+### Infrastructure: 
+Camada que implementa os detalhes técnicos, como acesso a banco de dados e integrações externas.
 
-```bash
-# development
-$ yarn run start
+### Injeção de Dependências
 
-# watch mode
-$ yarn run start:dev
+A injeção de dependências é um padrão de design que permite desacoplar componentes e facilitar a substituição de implementações. No Nest.js, a injeção de dependências é suportada nativamente, o que torna mais fácil a configuração e a gestão das dependências entre os diferentes módulos e componentes da aplicação.
 
-# production mode
-$ yarn run start:prod
-```
+### Módulos
+O Nest.js organiza a aplicação em módulos, que são conjuntos de componentes relacionados. Cada módulo pode ter seus próprios controladores, provedores de serviços e outros artefatos. Isso ajuda a manter o código modular e coeso, facilitando a compreensão e a manutenção.
 
-## Test
+## Executando o Projeto
+Para executar este projeto localmente, siga as instruções abaixo:
 
-```bash
-# unit tests
-$ yarn run test
+1. Clone este repositório para o seu ambiente local.
+2. Certifique-se de ter o Node.js e o npm instalados em sua máquina.
+3. Execute npm install para instalar as dependências do projeto.
+4. Utilize os scripts npm fornecidos para iniciar a aplicação:  
+```npm start:``` Inicia a aplicação em modo de produção.  
+```npm run start:dev:``` Inicia a aplicação em modo de desenvolvimento com suporte a hot-reload.  
+```npm run test:.``` Executa os testes automatizados  
+```npm run build:``` Compila o código TypeScript em JavaScript para produção.  
+Acesse a aplicação em ```http://localhost:3000``` (ou a porta configurada).
 
-# e2e tests
-$ yarn run test:e2e
+# Contribuição
+Contribuições são bem-vindas! Sinta-se à vontade para abrir uma issue para relatar problemas, sugerir melhorias ou enviar pull requests com novos recursos ou correções de bugs.
 
-# test coverage
-$ yarn run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+# Licença
+Este projeto está licenciado sob a Licença MIT. Sinta-se à vontade para usar, modificar e distribuir o código conforme necessário.
