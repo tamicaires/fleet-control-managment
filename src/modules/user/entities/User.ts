@@ -1,18 +1,26 @@
 import { randomUUID } from 'crypto';
+import { Role } from '../enum/Roles';
+import { Replace } from 'src/utils/replace';
 
 interface UserSchema {
   email: string;
   password: string;
   name: string;
-  role: string;
+  role: Role;
+  createdAt: Date; 
+  updatedAt: Date;
 }
 
 export class User {
-  props: UserSchema;
-  _id: string;
+  private props: UserSchema;
+  private _id: string;
 
-  constructor(props: UserSchema, id?: string) {
-    this.props = props;
+  constructor(props: Replace<UserSchema, { createdAt?: Date, updatedAt?: Date}>, id?: string) {
+    this.props = {
+      ...props,
+      createdAt: props.createdAt || new Date(),
+      updatedAt: props.updatedAt || new Date()
+    };
     this._id = id || randomUUID();
   }
 
@@ -36,11 +44,31 @@ export class User {
     this.props.password = password;
   }
 
-  get role(): string {
+  get name(): string {
+    return this.props.name
+  }
+
+  set name(name:string) {
+    this.props.name = name;
+  }
+
+  get role(): Role {
     return this.props.role;
   }
 
-  set role(role: string) {
+  set role(role: Role) {
     this.props.role = role;
+  }
+
+  get createdAt(): Date {
+    return this.props.createdAt;
+  }
+
+  get updatedAt(): Date {
+    return this.props.updatedAt;
+  }
+
+  set updatedAt(updatedAt : Date) {
+    this.props.updatedAt = updatedAt
   }
 }
