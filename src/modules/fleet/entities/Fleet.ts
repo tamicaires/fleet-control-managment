@@ -1,5 +1,6 @@
 import { randomUUID } from 'crypto';
 import { FleetStatus } from '../enum/fleet-status.enum';
+import { Replace } from 'src/utils/replace';
 
 interface FleetSchema {
   fleetNumber: string;
@@ -9,14 +10,20 @@ interface FleetSchema {
   third_trailer_plate: string;
   km: string;
   status: FleetStatus;
+  createdAt: Date; 
+  updatedAt: Date;
 }
 
 export class Fleet {
-  props: FleetSchema;
-  _id: string;
+  private props: FleetSchema;
+  private _id: string;
 
-  constructor(props: FleetSchema, id?: string) {
-    this.props = props;
+  constructor(props: Replace<FleetSchema, { createdAt?: Date, updatedAt?: Date}>, id?: string) {
+    this.props = {
+      ...props,
+      createdAt: props.createdAt || new Date(),
+      updatedAt: props.updatedAt || new Date()
+    };
     this._id = id || randomUUID();
   }
 
@@ -24,11 +31,11 @@ export class Fleet {
     return this._id;
   }
 
-  get fleet(): string {
+  get fleetNumber(): string {
     return this.props.fleetNumber;
   }
 
-  set fleet(fleetNumber: string) {
+  set fleetNumber(fleetNumber: string) {
     this.props.fleetNumber = fleetNumber;
   }
 
@@ -72,11 +79,23 @@ export class Fleet {
     this.props.km = km;
   }
 
-  get status(): string {
+  get status(): FleetStatus {
     return this.props.status;
   }
 
   set status(status: FleetStatus) {
     this.props.status = status;
+  }
+
+  get createdAt(): Date {
+    return this.props.createdAt;
+  }
+
+  get updatedAt(): Date {
+    return this.props.updatedAt;
+  }
+
+  set updatedAt(updatedAt : Date) {
+    this.props.updatedAt = updatedAt
   }
 }

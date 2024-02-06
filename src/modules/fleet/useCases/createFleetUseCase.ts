@@ -13,7 +13,7 @@ interface CreateFleetRequest {
 }
 
 @Injectable()
-export class CreateFleetUserCase {
+export class CreateFleetUseCase {
   constructor(private fleetRepository: FleetRepository) {}
 
   async execute({

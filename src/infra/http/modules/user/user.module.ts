@@ -10,6 +10,4 @@ import { DatabaseModule } from "src/infra/database/database.module";
   
 
 })
-export class UserModule {
-
-}
+export class UserModule {}
