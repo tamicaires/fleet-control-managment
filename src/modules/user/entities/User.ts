@@ -19,7 +19,7 @@ export class User {
     this.props = {
       ...props,
       createdAt: props.createdAt || new Date(),
-      updatedAt: props.updatedAt || new Date()
+      updatedAt: new Date()
     };
     this._id = id || randomUUID();
   }
