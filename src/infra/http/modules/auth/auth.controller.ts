@@ -10,7 +10,7 @@ import {
 import { AuthRequestModel } from "./models/authRequestModel";
 import { SignInUseCase } from "src/modules/auth/useCases/signInUseCase/signInUseCase";
 import { LocalAuthGuard } from "./guards/localAuth.guard";
-import { Public } from "./decorators/isPublic";
+import { Public } from "./decorators/is-public.decorator";
 import { JwtAuthGuard } from "./guards/jwtAuth.guard";
 import { AuthenticatedRequestModel } from "./models/authenticateRequestModel";
 
@@ -19,7 +19,7 @@ export class AuthControler {
   
   constructor(private signInUseCase: SignInUseCase) {}
 
-  @Post('signIn')
+  @Post('login')
   @Public()
   @HttpCode(HttpStatus.OK)
   @UseGuards(LocalAuthGuard)
@@ -32,7 +32,7 @@ export class AuthControler {
     return { access_token };
   }
   
-  @Get('test')
+  @Get('me')
   @UseGuards(JwtAuthGuard)
   async test(@Request() request: AuthenticatedRequestModel){
     return request.user

@@ -23,7 +23,7 @@ import { JwtStrategy } from "src/modules/auth/strategies/jwtStrategy";
 
 export class AuthModule {
   configure(consumer: MiddlewareConsumer){
-    consumer.apply(signInDTOValidateMiddleware).forRoutes('/signIn')
+    consumer.apply(signInDTOValidateMiddleware).forRoutes('login')
   }
 }
 
