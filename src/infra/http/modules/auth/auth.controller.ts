@@ -12,7 +12,8 @@ import { SignInUseCase } from "src/modules/auth/useCases/signInUseCase/signInUse
 import { LocalAuthGuard } from "./guards/localAuth.guard";
 import { Public } from "./decorators/is-public.decorator";
 import { JwtAuthGuard } from "./guards/jwtAuth.guard";
-import { AuthenticatedRequestModel } from "./models/authenticateRequestModel";
+import { CurrentUser } from "./decorators/current-user.decorator";
+import { User } from "src/modules/user/entities/User";
 
 @Controller()
 export class AuthControler {
@@ -34,7 +35,7 @@ export class AuthControler {
   
   @Get('me')
   @UseGuards(JwtAuthGuard)
-  async test(@Request() request: AuthenticatedRequestModel){
-    return request.user
+  async getMe(@CurrentUser() user: User){
+    return user
   }
 }
