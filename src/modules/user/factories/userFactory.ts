@@ -5,9 +5,9 @@ type Override = Partial<User>
 
 export const makeUser = ({id, ...override}: Override) => {
   return new User({
-    email: "tami@gmail.com",
+      email: "tami@gmail.com",
       name: "Tamires",
-      password: "12345",
+      password: "123456",
       role: Role.ADMIN,
       ...override
   },

@@ -19,7 +19,10 @@ model User {
 
   createdAt   DateTime @default(now()) @map("created_at")
   updatedAt   DateTime @default(now()) @map("updated_at")
+
   @@map("users")
+  notes        Note[]
+
 }
 
 enum Role {
@@ -27,6 +30,17 @@ enum Role {
   ADMIN
   CONSULTER
   MANAGER
+}
+
+model Note {
+  id            String    @id
+  title         String    
+  description   String?
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId        String
+
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @default(now()) @map("updated_at")
 }
 
 model Fleet {
@@ -37,11 +51,28 @@ model Fleet {
   second_trailer_plate  String
   third_trailer_plate   String
   km                    String
-  status                Status    @default(ATIVO)
+  status                Status    @default(ATIVO) 
+  carrier               Carrier?  @relation(fields: [carrierId], references: [id])
+  carrierId             String?   @map("carrier_id") 
 
   createdAt   DateTime @default(now()) @map("created_at")
   updatedAt   DateTime @default(now()) @map("updated_at")
   @@map("fleets")
+  
+}
+
+model Carrier {
+  id                    String   @id
+  carrierName           String   @unique 
+  managerName           String
+  managerPhone          String
+  status                Status  @default(ATIVO)
+
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @default(now()) @map("updated_at")
+
+  @@map("carries") 
+  fleets                Fleet[]   
 }
 
 enum Status {
