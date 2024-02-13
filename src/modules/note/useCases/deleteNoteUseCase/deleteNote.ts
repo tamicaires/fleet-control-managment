@@ -1,29 +1,23 @@
 import { Injectable, NotFoundException, UnauthorizedException } from "@nestjs/common";
 import { NoteRepository } from "../../repositories/noteRepository";
 
-interface EditNoteRequest {
-  title: string;
-  description?: string;
+interface DeleteNoteRequest {
   noteId: string;
   userId: string;
 }
-@Injectable()
-export class EditNoteUseCase {
-  constructor(private noteRepository: NoteRepository) {}
 
-  async execute({description, noteId, title, userId}: EditNoteRequest){
+@Injectable()
+export class DeleteNote {
+  constructor(private noteRepository: NoteRepository) {}
+  
+  async execute({ noteId, userId }: DeleteNoteRequest) {
+
     const note = await this.noteRepository.findById(noteId);
 
     if(!note) throw new NotFoundException();
 
     if(note.userId !== userId) throw new UnauthorizedException();
 
-    note.title = title
-    note.description = description ?? null
-
-    await this.noteRepository.save(note)
-
-    return note;
-  }
-  
-}
+    await this.noteRepository.delete(noteId);
+  };
+};

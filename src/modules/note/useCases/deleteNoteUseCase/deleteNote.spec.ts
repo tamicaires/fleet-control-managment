@@ -1,47 +1,41 @@
 import { makeUser } from 'src/modules/user/factories/userFactory';
 import { NoteRepositoryInMemory } from '../../repositories/noteRepositoryInMemory';
-import { EditNoteUseCase } from './editNoteUseCase';
+import { DeleteNote } from './deleteNote';
 import { NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { makeNote } from '../../factories/noteFactory';
 
 let noteRepositoryInMemory: NoteRepositoryInMemory;
-let editNoteUseCase: EditNoteUseCase;
+let deleteNote: DeleteNote;
 
-describe('Edit Note', () => {
+describe('Delete Note', () => {
   beforeEach(() => {
     noteRepositoryInMemory = new NoteRepositoryInMemory();
-    editNoteUseCase = new EditNoteUseCase(noteRepositoryInMemory);
+    deleteNote = new DeleteNote(noteRepositoryInMemory);
   });
 
-  it('Should be able to edit note', async () => {
+  it('Should be able to delete note', async () => {
     const user = makeUser({});
+    
     const note = makeNote({
       userId: user.id
     });
 
     noteRepositoryInMemory.notes = [note];
 
-    const titleChanged = 'Inspeção cavalinho vencida';
-    const descriptionChanged = 'Frota 22515';
-
-    await editNoteUseCase.execute({
-      title: titleChanged,
-      description: descriptionChanged,
+    await deleteNote.execute({
       noteId: note.id,
       userId: user.id,
     });
 
-    expect(noteRepositoryInMemory.notes[0].title).toEqual(titleChanged);
-    expect(noteRepositoryInMemory.notes[0].description).toEqual(descriptionChanged);
+    expect(noteRepositoryInMemory.notes).toHaveLength(0);
   });
 
   it('Should be able to throw error when not found note', async () => {
 
     expect(async () => {
-      await editNoteUseCase.execute({
-        title: 'Preventiva 22545',
+      await deleteNote.execute({
         noteId: 'fakeId',
-        userId: 'fakeId'
+        userId: 'fakeId',
       });
     }).rejects.toThrow(NotFoundException);
   });
@@ -52,10 +46,9 @@ describe('Edit Note', () => {
     noteRepositoryInMemory.notes = [note];
 
     expect(async () => {
-      await editNoteUseCase.execute({
-        title: 'Preventiva agendada 22311',
+      await deleteNote.execute({
         noteId: note.id,
-        userId: 'fakeId'
+        userId: 'fakeId',
       });
     }).rejects.toThrow(UnauthorizedException);
   });

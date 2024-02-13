@@ -7,7 +7,7 @@ interface CreateNoteRequest {
   userId: string ;
 }
 
-export class CreateNoteUseCase {
+export class CreateNote {
 
   constructor(private noteRepository: NoteRepository) {}
   async execute({title, description, userId}: CreateNoteRequest) {

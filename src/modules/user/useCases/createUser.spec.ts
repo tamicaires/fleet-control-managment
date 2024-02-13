@@ -1,25 +1,26 @@
 import { compare } from "bcrypt"
 import { UserRepositoryInMemory } from "../repositories/UserRepositoryInMemory"
-import { CreateUserUseCase } from "./createUserUseCase"
+import { CreateUser } from "./createUser"
+import { Role } from "../enum/Roles"
 
-let createUserUseCase: CreateUserUseCase
+let createUser: CreateUser
 let userRepositoryInMemory: UserRepositoryInMemory
 
 describe('Create User', () => {
 
   beforeEach(() => {
     userRepositoryInMemory = new UserRepositoryInMemory()
-    createUserUseCase = new CreateUserUseCase(userRepositoryInMemory)
+    createUser = new CreateUser(userRepositoryInMemory)
   });
 
   it('Should be able to create user with password encrypted', async () => {
     const userPasswordWithoutEncryption = '121123'
 
-    const user = await createUserUseCase.execute({
+    const user = await createUser.execute({
       email: "email@gmail.com",
       name: "Elves",
       password: userPasswordWithoutEncryption,
-      role: "ADMIN"
+      role: Role.ADMIN
     });
 
     const userHasPasswordEncrypted = await compare(

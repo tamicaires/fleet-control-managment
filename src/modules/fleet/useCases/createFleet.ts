@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { FleetRepository } from '../repositories/FleetRepository';
 import { Fleet } from '../entities/Fleet';
+import { FleetStatus } from '../enum/fleet-status.enum';
 
 interface CreateFleetRequest {
   fleetNumber: string;
@@ -9,34 +10,26 @@ interface CreateFleetRequest {
   second_trailer_plate: string;
   third_trailer_plate: string;
   km: string;
-  status: string;
+  status: FleetStatus;
 }
 
 @Injectable()
-export class CreateFleetUseCase {
+export class CreateFleet {
   constructor(private fleetRepository: FleetRepository) {}
 
-  async execute({
-    fleetNumber,
-    plate,
-    first_trailer_plate,
-    second_trailer_plate,
-    third_trailer_plate,
-    km,
-    status,
-  }) {
+  async execute(data: CreateFleetRequest) {
     const fleet = new Fleet({
-      fleetNumber,
-      plate,
-      first_trailer_plate,
-      second_trailer_plate,
-      third_trailer_plate,
-      km,
-      status,
+      fleetNumber: data.fleetNumber,
+      plate: data.plate,
+      first_trailer_plate: data.first_trailer_plate,
+      second_trailer_plate: data.second_trailer_plate,
+      third_trailer_plate: data.third_trailer_plate,
+      km: data.km,
+      status: data.status
     });
 
     await this.fleetRepository.create(fleet);
 
     return fleet;
-  }
-}
+  };
+};

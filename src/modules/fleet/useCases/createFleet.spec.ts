@@ -1,5 +1,5 @@
 import { FleetRepositoryInMemory } from "../repositories/FleetRepositoryInMemory"
-import { CreateFleetUserCase } from "./createFleetUseCase"
+import { CreateFleetUserCase } from "./createFleet"
 
 let createFleetUserCase: CreateFleetUserCase
 let fleetRepositoryInMemory: FleetRepositoryInMemory

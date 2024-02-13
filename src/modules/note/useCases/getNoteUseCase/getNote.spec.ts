@@ -1,16 +1,16 @@
 import { makeUser } from 'src/modules/user/factories/userFactory';
 import { NoteRepositoryInMemory } from '../../repositories/noteRepositoryInMemory';
-import { GetNoteUseCase } from './getNoteUseCase';
+import { GetNote } from './getNote';
 import { NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { makeNote } from '../../factories/noteFactory';
 
 let noteRepositoryInMemory: NoteRepositoryInMemory;
-let getNoteUseCase: GetNoteUseCase;
+let getNote: GetNote;
 
 describe('Get Note', () => {
   beforeEach(() => {
     noteRepositoryInMemory = new NoteRepositoryInMemory();
-    getNoteUseCase = new GetNoteUseCase(noteRepositoryInMemory);
+    getNote = new GetNote(noteRepositoryInMemory);
   });
 
   it('Should be able to get note', async () => {
@@ -19,7 +19,7 @@ describe('Get Note', () => {
 
     noteRepositoryInMemory.notes = [note];
 
-    const result = await getNoteUseCase.execute({
+    const result = await getNote.execute({
       noteId: note.id,
       userId: user.id
     });
@@ -31,7 +31,7 @@ describe('Get Note', () => {
   it('Should be able to throw error when not found note', async () => {
 
     expect(async () => {
-      await getNoteUseCase.execute({
+      await getNote.execute({
         noteId: 'fakeId',
         userId: 'fakeId'
       });
@@ -44,7 +44,7 @@ describe('Get Note', () => {
     noteRepositoryInMemory.notes = [note];
 
     expect(async () => {
-      await getNoteUseCase.execute({
+      await getNote.execute({
         noteId: note.id,
         userId: 'fakeId'
       });

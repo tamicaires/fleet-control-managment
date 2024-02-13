@@ -1,15 +1,15 @@
 import { makeUser } from 'src/modules/user/factories/userFactory';
 import { NoteRepositoryInMemory } from '../../repositories/noteRepositoryInMemory';
-import { GetManyNoteUseCase } from './getManyNoteUseCase';
+import { GetManyNotes } from './getManyNotes';
 import { makeNote } from '../../factories/noteFactory';
 
 let noteRepositoryInMemory: NoteRepositoryInMemory;
-let getManyNoteUseCase: GetManyNoteUseCase;
+let getManyNotes: GetManyNotes;
 
-describe('Get many note', () => {
+describe('Get many notes', () => {
   beforeEach(() => {
     noteRepositoryInMemory = new NoteRepositoryInMemory();
-    getManyNoteUseCase = new GetManyNoteUseCase(noteRepositoryInMemory);
+    getManyNotes = new GetManyNotes(noteRepositoryInMemory);
   });
 
   it('Should be able to get many note', async () => {
@@ -19,7 +19,7 @@ describe('Get many note', () => {
 
     noteRepositoryInMemory.notes = notes;
 
-    const result = await getManyNoteUseCase.execute({
+    const result = await getManyNotes.execute({
       userId: user.id 
     });
 
@@ -34,7 +34,7 @@ describe('Get many note', () => {
 
     noteRepositoryInMemory.notes = notes;
 
-    const result = await getManyNoteUseCase.execute({
+    const result = await getManyNotes.execute({
       userId: user1.id 
     });
 
@@ -48,7 +48,7 @@ describe('Get many note', () => {
 
     noteRepositoryInMemory.notes = notes;
 
-    const result = await getManyNoteUseCase.execute({
+    const result = await getManyNotes.execute({
       userId: user.id,
       perPage: '8'
     })
@@ -63,7 +63,7 @@ describe('Get many note', () => {
 
     noteRepositoryInMemory.notes = notes;
 
-    const result = await getManyNoteUseCase.execute({
+    const result = await getManyNotes.execute({
       userId: user.id,
       perPage:'5',
       page: '1',
