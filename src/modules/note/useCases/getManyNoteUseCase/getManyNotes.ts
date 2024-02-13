@@ -10,6 +10,7 @@ interface GetManyNotesRequest {
 @Injectable()
 export class GetManyNotes {
   constructor(private noteRepositoy: NoteRepository){}
+  
   async execute({ userId, page, perPage }: GetManyNotesRequest) {
     const DEFAULT_PAGE = 1;
     const DEFAULT_PER_PAGE = 20;

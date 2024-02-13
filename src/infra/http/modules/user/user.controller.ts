@@ -1,5 +1,5 @@
 import { Body, Controller, Post, UseGuards } from "@nestjs/common";
-import { CreateUserUseCase } from "src/modules/user/useCases/createUser";
+import { CreateUser } from "src/modules/user/useCases/createUser";
 import { CreateUserBody } from "./dtos/createUserBody";
 import { UserViewModel } from "./viewModel/userViewModel";
 import { Role } from "../auth/decorators/roles.decorator";
@@ -7,7 +7,7 @@ import { AuthorizationGuard } from "../auth/guards/authorization.guard";
 
 @Controller('users')
 export class UserController {
-  constructor(private createUserUseCase: CreateUserUseCase){}
+  constructor(private createUserUseCase: CreateUser){}
 
   @Post()
   @UseGuards(AuthorizationGuard)

@@ -2,7 +2,7 @@ import { Carrier } from "../entities/Carrier";
 import { CarrierRepository } from "./CarrierRepository";
 
 export class CarrierRepositoryInMemory implements CarrierRepository {
-    
+      
   public carriers: Carrier[] = []
 
   async create(carrier: Carrier): Promise<void> {
@@ -24,5 +24,11 @@ export class CarrierRepositoryInMemory implements CarrierRepository {
   async save(carrier: Carrier): Promise<void> {
     const carrierIndex = this.carriers.findIndex(currentCarrier => currentCarrier.id === carrier.id);
 
-    if(carrierIndex >= 0) this.carriers[carrierIndex] = carrier }
+    if(carrierIndex >= 0) this.carriers[carrierIndex] = carrier 
+  }
+
+  async findAll( page: number, perPage: number): Promise<Carrier[] | null> {
+    return this.carriers
+      .slice((page - 1) * perPage, page * perPage)
+  }
 }

@@ -31,5 +31,5 @@ export class NoteRepositoryInMemory implements NoteRepository {
     return this.notes
     .filter(note => note.userId === userId)
     .slice((page - 1) * perPage, page * perPage) 
-  }
-}
+  };
+};

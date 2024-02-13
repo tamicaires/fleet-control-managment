@@ -5,4 +5,8 @@ export abstract class CarrierRepository {
   abstract findById(id: string): Promise<Carrier | null>;
   abstract delete(id: string): Promise<void>;
   abstract save(carrier: Carrier): Promise<void>;
+  abstract findAll(
+    page: number,
+    perPage: number,
+  ): Promise<Carrier[] | null>;
 }
