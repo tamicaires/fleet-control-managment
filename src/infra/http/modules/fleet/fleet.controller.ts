@@ -1,6 +1,6 @@
 import { Body, Controller, Post } from "@nestjs/common";
 import { CreateFleetBody } from "./dtos/createFleetBody";
-import { CreateFleetUseCase } from "src/modules/fleet/useCases/createFleet";
+import { CreateFleetUseCase } from "src/modules/fleet/useCases/createFleetUseCase/createFleet";
 
 @Controller('fleets')
 export class FleetController {
