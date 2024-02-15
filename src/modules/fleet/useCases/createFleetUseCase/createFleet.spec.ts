@@ -23,6 +23,7 @@ describe('Create fleet', () => {
       second_trailer_plate: 'OBC5F2C',
       third_trailer_plate: 'OBC5F2C',
       km: '352.2',
+      carrierId: '225546',
       status: FleetStatus.ATIVO
     });
 

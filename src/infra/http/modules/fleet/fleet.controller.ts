@@ -1,11 +1,11 @@
 import { Body, Controller, Post } from "@nestjs/common";
 import { CreateFleetBody } from "./dtos/createFleetBody";
-import { CreateFleetUseCase } from "src/modules/fleet/useCases/createFleetUseCase/createFleet";
+import { CreateFleet } from "src/modules/fleet/useCases/createFleetUseCase/createFleet";
 
 @Controller('fleets')
 export class FleetController {
 
-  constructor(private createFleetUseCase: CreateFleetUseCase) {}
+  constructor(private createFleetUseCase: CreateFleet) {}
 
   @Post()
   createFleet(@Body() body: CreateFleetBody){
@@ -15,8 +15,9 @@ export class FleetController {
       first_trailer_plate,
       second_trailer_plate,
       third_trailer_plate,
-      km, 
-      status   
+      km,
+      carrierId,
+      status  
     } = body;
 
     const fleet = this.createFleetUseCase.execute({
@@ -25,7 +26,8 @@ export class FleetController {
       first_trailer_plate,
       second_trailer_plate,
       third_trailer_plate,
-      km, 
+      km,
+      carrierId,
       status
     });
 

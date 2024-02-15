@@ -10,10 +10,12 @@ export class PrismaFleetMapper {
     second_trailer_plate,
     third_trailer_plate,
     km,
+    carrierId,
     status,
     createdAt,
     updatedAt
   }: Fleet): FleetRaw {
+    
     return {
     id,
     fleetNumber, 
@@ -22,6 +24,7 @@ export class PrismaFleetMapper {
     second_trailer_plate,
     third_trailer_plate,
     km,
+    carrierId,
     status,
     createdAt,
     updatedAt

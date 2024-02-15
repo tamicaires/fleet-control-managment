@@ -1,4 +1,7 @@
+import { FleetStatus } from "src/modules/fleet/enum/fleet-status.enum";
+
 export class CreateFleetBody {
+
   fleetNumber: string;
 
   plate: string;
@@ -11,6 +14,8 @@ export class CreateFleetBody {
 
   km: string;
 
-  status: string;
+  carrierId: string;
+
+  status: FleetStatus;
 
 }

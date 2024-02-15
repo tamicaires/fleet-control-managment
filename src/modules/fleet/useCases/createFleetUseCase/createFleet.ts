@@ -10,6 +10,7 @@ interface CreateFleetRequest {
   second_trailer_plate: string;
   third_trailer_plate: string;
   km: string;
+  carrierId: string;
   status: FleetStatus;
 }
 
@@ -25,6 +26,7 @@ export class CreateFleet {
       second_trailer_plate: data.second_trailer_plate,
       third_trailer_plate: data.third_trailer_plate,
       km: data.km,
+      carrierId: data.carrierId,
       status: data.status
     });
 

@@ -9,6 +9,7 @@ interface FleetSchema {
   second_trailer_plate: string;
   third_trailer_plate: string;
   km: string;
+  carrierId: string;
   status: FleetStatus;
   createdAt: Date; 
   updatedAt: Date;
@@ -77,6 +78,14 @@ export class Fleet {
 
   set km(km: string) {
     this.props.km = km;
+  }
+
+  get carrierId(): string {
+    return this.props.carrierId;
+  }
+
+  set carrierId(carrierId: string) {
+    this.props.carrierId = carrierId;
   }
 
   get status(): FleetStatus {
