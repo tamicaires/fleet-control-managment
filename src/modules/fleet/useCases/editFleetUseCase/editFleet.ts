@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { FleetStatus } from "../../enum/fleet-status.enum";
 import { FleetRepository } from "../../repositories/FleetRepository";
+import { updateFleetProperties } from "src/utils/updateFleetProperties";
 
 interface EditFleetRequest {
   fleetId: string;
@@ -22,13 +23,7 @@ export class EditFleet {
 
     if(!fleet) throw new NotFoundException();
 
-      fleet.fleetNumber = data.fleetNumber;
-      fleet.plate = data.plate;
-      fleet.first_trailer_plate = data.first_trailer_plate;
-      fleet.second_trailer_plate = data.second_trailer_plate;
-      fleet.third_trailer_plate = data.third_trailer_plate;
-      fleet.km = data.km;
-      fleet.status = data.status;
+    updateFleetProperties(fleet, data);
 
     await this.fleetRepository.save(fleet);
 
