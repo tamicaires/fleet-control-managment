@@ -5,13 +5,15 @@ import { FleetModule } from './infra/http/modules/fleet/fleet.module';
 import { AuthModule } from './infra/http/modules/auth/auth.module';
 import { JwtAuthGuard } from './infra/http/modules/auth/guards/jwtAuth.guard';
 import { APP_GUARD } from '@nestjs/core';
+import { NoteModule } from './infra/http/modules/note/note.module';
 
 @Module({
   imports: [
     DatabaseModule,
     AuthModule,
     UserModule, 
-    FleetModule
+    NoteModule,
+    FleetModule,
   ],
   controllers: [],
   providers: [
