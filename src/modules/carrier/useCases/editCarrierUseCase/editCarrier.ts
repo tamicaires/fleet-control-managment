@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { CarrierRepository } from "../../repositories/CarrierRepository";
 import { CarrierStatus } from "../../enum/carrier-status.enum";
+import { updateCarrierProperties } from "src/utils/uptadeCarrierProperties";
 
 interface EditCarrierRequest {
   carrierName?: string;
@@ -19,14 +20,8 @@ export class EditCarrier {
 
     if(!carrier) throw new NotFoundException();
 
-    if(data.carrierName !== undefined) carrier.carrierName = data.carrierName;
+    updateCarrierProperties(carrier, data);
     
-    if(data.manageName !== undefined) carrier.manageName = data.manageName;
-
-    if(data.managePhone !== undefined) carrier.managePhone = data.managePhone;
-    
-    if(data.status !== undefined) carrier.status = data.status;
-
     await this.carrierRepository.save(carrier);
 
     return carrier;
