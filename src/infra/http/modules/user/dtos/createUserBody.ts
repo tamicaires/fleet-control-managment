@@ -1,4 +1,5 @@
 import { IsEmail, IsNotEmpty, IsString, MinLength } from "class-validator";
+import { Role } from "src/modules/user/enum/Roles";
 
 export class CreateUserBody {
   @IsString()
@@ -17,6 +18,6 @@ export class CreateUserBody {
 
   @IsString()
   @IsNotEmpty()
-  role: string;
+  role: Role;
 
 }

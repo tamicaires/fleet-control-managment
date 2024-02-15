@@ -20,7 +20,7 @@ export class UserController {
       email, 
       password, 
       name, 
-      role 
+      role
     });
 
     return UserViewModel.toHttp(user);
