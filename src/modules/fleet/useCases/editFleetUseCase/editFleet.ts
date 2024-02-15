@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { FleetStatus } from "../../enum/fleet-status.enum";
 import { FleetRepository } from "../../repositories/FleetRepository";
-import { updateFleetProperties } from "src/utils/updateFleetProperties";
+import { updateFleetProperties } from "src/utils/fleetUtils";
 
 interface EditFleetRequest {
   fleetId: string;
