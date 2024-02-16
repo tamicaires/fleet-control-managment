@@ -1,3 +1,4 @@
+import { EditFleetBody } from "src/infra/http/modules/fleet/dtos/editFleetBody";
 import { Fleet } from "src/modules/fleet/entities/Fleet";
 
 export function updateFleetProperties(fleet: Fleet, data: Partial<Fleet>) {
@@ -22,4 +23,27 @@ export function updateFleetProperties(fleet: Fleet, data: Partial<Fleet>) {
   if (data.status !== undefined) {
     fleet.status = data.status;
   }
-}
+};
+
+export function mapEditFleetData(body: EditFleetBody, fleetId: string){
+  const { 
+    fleetNumber, 
+    plate, 
+    first_trailer_plate, 
+    second_trailer_plate, 
+    third_trailer_plate, 
+    km, 
+    status
+  } = body;
+
+  return {
+    fleetId,
+    fleetNumber, 
+    plate, 
+    first_trailer_plate, 
+    second_trailer_plate, 
+    third_trailer_plate, 
+    km, 
+    status
+  };
+};

@@ -1,23 +1,23 @@
 import { makeFleet } from "../../factories/fleetFactory"
 import { FleetRepositoryInMemory } from "../../repositories/FleetRepositoryInMemory"
-import { GetAllFleets } from "./getAllFleets"
+import { GetManyFleets } from "./getManyFleets"
 
 let fleetRepositoryInMemory: FleetRepositoryInMemory
-let getAllFleets: GetAllFleets
+let getManyFleets: GetManyFleets
 
-describe('Get All Fleets', () => {
+describe('Get Many Fleets', () => {
   beforeEach(() => {
     fleetRepositoryInMemory = new FleetRepositoryInMemory()
-    getAllFleets = new GetAllFleets(fleetRepositoryInMemory)
+    getManyFleets = new GetManyFleets(fleetRepositoryInMemory)
   });
 
-  it('Should be able to get all Fleets', async () => {
+  it('Should be able to get many Fleets', async () => {
 
     const fleets = [... new Array(10)].map(() => makeFleet({}));
                                                                                             
     fleetRepositoryInMemory.fleets = fleets;
 
-    const result = await getAllFleets.execute({});
+    const result = await getManyFleets.execute({});
 
     expect(result).toEqual(fleets);
   });

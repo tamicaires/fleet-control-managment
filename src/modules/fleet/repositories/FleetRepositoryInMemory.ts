@@ -27,7 +27,7 @@ export class FleetRepositoryInMemory implements FleetRepository {
     if(fleetIndex >= 0) this.fleets[fleetIndex] = fleet;
   };
 
-  async findAll(page: number, perPage: number): Promise<Fleet[]> {
+  async findMany(page: number, perPage: number): Promise<Fleet[]> {
     return this.fleets
       .slice((page - 1) * perPage, page * perPage);
   };

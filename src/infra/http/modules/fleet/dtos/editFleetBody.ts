@@ -1,38 +1,37 @@
-import { IsNotEmpty, IsString } from "class-validator";
+import { IsOptional, IsString } from "class-validator";
 import { FleetStatus } from "src/modules/fleet/enum/fleet-status.enum";
 
-export class CreateFleetBody {
+export class EditFleetBody{
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   fleetNumber: string;
   
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   plate: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   first_trailer_plate: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   second_trailer_plate: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   third_trailer_plate: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   km: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   carrierId: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   status: FleetStatus;
-
-}
+};
