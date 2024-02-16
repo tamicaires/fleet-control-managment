@@ -2,7 +2,9 @@ import { CarrierRepository } from "src/modules/carrier/repositories/CarrierRepos
 import { PrismaService } from "../prisma.service";
 import { Carrier } from "src/modules/carrier/entities/Carrier";
 import { PrismaCarrierMapper } from "../mappers/PrismaCarrierMapper";
+import { Injectable } from "@nestjs/common";
 
+@Injectable()
 export class PrismaCarrierRepository implements CarrierRepository {
   constructor(private prisma: PrismaService) {}
 

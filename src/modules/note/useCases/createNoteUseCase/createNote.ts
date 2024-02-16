@@ -1,3 +1,4 @@
+import { Injectable } from "@nestjs/common";
 import { Note } from "../../entities/Note";
 import { NoteRepository } from "../../repositories/noteRepository";
 
@@ -7,6 +8,7 @@ interface CreateNoteRequest {
   userId: string ;
 }
 
+@Injectable()
 export class CreateNote {
 
   constructor(private noteRepository: NoteRepository) {}

@@ -1,5 +1,5 @@
 import { Module } from "@nestjs/common";
-import { NoteController } from "./note.controller";
+import { NoteController } from "./note.controller"; 
 import { DatabaseModule } from "src/infra/database/database.module";
 import { CreateNote } from "src/modules/note/useCases/createNoteUseCase/createNote";
 import { DeleteNote } from "src/modules/note/useCases/deleteNoteUseCase/deleteNote";
