@@ -21,25 +21,25 @@ describe('Edit Carrier', () => {
     carrierRepositoryInMemory.carriers = [carrier];
 
     const carrierNameChanged = 'JATL';
-    const manageNameChanged = 'Juceide';
-    const managePhoneChanged = '(84)58645-5556'
+    const managerNameChanged = 'Juceide';
+    const managerPhoneChanged = '(84)58645-5556'
 
     await editCarrier.execute({
       carrierId: carrier.id,
       carrierName: carrierNameChanged,
-      manageName: manageNameChanged,
-      managePhone: managePhoneChanged,
+      managerName: managerNameChanged,
+      managerPhone: managerPhoneChanged,
       status: CarrierStatus.ATIVO
     });
 
     expect(carrierRepositoryInMemory.carriers[0].carrierName)
       .toEqual(carrierNameChanged);
 
-    expect(carrierRepositoryInMemory.carriers[0].manageName)
-      .toEqual(manageNameChanged);
+    expect(carrierRepositoryInMemory.carriers[0].managerName)
+      .toEqual(managerNameChanged);
 
-    expect(carrierRepositoryInMemory.carriers[0].managePhone)
-      .toEqual(managePhoneChanged);     
+    expect(carrierRepositoryInMemory.carriers[0].managerPhone)
+      .toEqual(managerPhoneChanged);     
   });
 
   it('Should be able to throw error when not found carrier', async () => {
@@ -48,7 +48,7 @@ describe('Edit Carrier', () => {
       await editCarrier.execute({
         carrierId: 'fakeId',
         carrierName: 'FakeName',
-        managePhone: 'FakePhone',
+        managerPhone: 'FakePhone',
         status: CarrierStatus.ATIVO
       });
 

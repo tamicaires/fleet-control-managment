@@ -8,7 +8,7 @@ interface GetAllCarriersRequest {
 }
 
 @Injectable()
-export class GetAllCarriers {
+export class GetManyCarriers {
   constructor(private carrierRepository: CarrierRepository) {}
 
   async execute({ page, perPage }: GetAllCarriersRequest) {
@@ -19,7 +19,7 @@ export class GetAllCarriers {
     const currentPerPage = Number(perPage) || DEFAULT_PER_PAGE;
 
   
-    const carriers = await this.carrierRepository.findAll(
+    const carriers = await this.carrierRepository.findMany(
       currentPage, 
       currentPerPage,
     )

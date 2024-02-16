@@ -1,12 +1,12 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { CarrierRepository } from "../../repositories/CarrierRepository";
 import { CarrierStatus } from "../../enum/carrier-status.enum";
-import { updateCarrierProperties } from "src/utils/uptadeCarrierProperties";
+import { updateCarrierProperties } from "src/utils/carrierUtils";
 
 interface EditCarrierRequest {
   carrierName?: string;
-  manageName?: string;
-  managePhone?: string;
+  managerName?: string;
+  managerPhone?: string;
   status?: CarrierStatus;
   carrierId: string;
 };

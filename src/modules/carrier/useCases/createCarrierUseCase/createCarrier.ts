@@ -5,13 +5,13 @@ import { Carrier } from "../../entities/Carrier";
 
 interface CreateCarrierRequest {
   carrierName: string;
-  manageName: string;
-  managePhone: string;
+  managerName: string;
+  managerPhone: string;
   status: CarrierStatus;
 }
 
 @Injectable()
-export class CreateCarrierUseCase {
+export class CreateCarrier {
   constructor(private carrierRepository: CarrierRepository) { }
   async execute(data: CreateCarrierRequest ) {
     const carrier = new Carrier(data);

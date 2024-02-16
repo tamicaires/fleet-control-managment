@@ -6,6 +6,7 @@ import { AuthModule } from './infra/http/modules/auth/auth.module';
 import { JwtAuthGuard } from './infra/http/modules/auth/guards/jwtAuth.guard';
 import { APP_GUARD } from '@nestjs/core';
 import { NoteModule } from './infra/http/modules/note/note.module';
+import { CarrierModule } from './infra/http/modules/carrier/carrier.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { NoteModule } from './infra/http/modules/note/note.module';
     AuthModule,
     UserModule, 
     NoteModule,
+    CarrierModule,
     FleetModule,
   ],
   controllers: [],

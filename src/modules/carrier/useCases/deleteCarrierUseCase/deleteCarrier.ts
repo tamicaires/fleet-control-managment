@@ -6,7 +6,7 @@ interface DeleteCarrierRequest {
 }
 
 @Injectable()
-export class DeleteCarrierUseCase {
+export class DeleteCarrier {
   constructor(private carrierRepository: CarrierRepository) { }
 
   async execute({ carrierId }: DeleteCarrierRequest ) {

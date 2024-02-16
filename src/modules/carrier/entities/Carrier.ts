@@ -4,8 +4,8 @@ import { Replace } from "src/utils/replace";
 
 interface CarrierSchema {
   carrierName: string;
-  manageName: string;
-  managePhone: string;
+  managerName: string;
+  managerPhone: string;
   status: CarrierStatus;
   createdAt: Date; 
   updatedAt: Date; 
@@ -35,20 +35,20 @@ export class Carrier {
     this.props.carrierName = carrierName;
   }
 
-  get manageName(): string {
-    return this.props.manageName;
+  get managerName(): string {
+    return this.props.managerName;
   }
 
-  set manageName(manageName: string) {
-    this.props.manageName = manageName;
+  set managerName(managerName: string) {
+    this.props.managerName = managerName;
   }
 
-  get managePhone(): string {
-    return this.props.managePhone;
+  get managerPhone(): string {
+    return this.props.managerPhone;
   }
 
-  set managePhone(managePhone: string) {
-    this.props.managePhone = managePhone;
+  set managerPhone(managerPhone: string) {
+    this.props.managerPhone = managerPhone;
   }
 
   get status(): CarrierStatus {
