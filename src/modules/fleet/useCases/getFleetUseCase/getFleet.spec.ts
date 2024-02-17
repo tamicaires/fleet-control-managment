@@ -1,7 +1,7 @@
-import { NotFoundException } from "@nestjs/common"
-import { makeFleet } from "../../factories/fleetFactory"
-import { FleetRepositoryInMemory } from "../../repositories/FleetRepositoryInMemory"
-import { GetFleet } from "./getFleet"
+import { FleetNotFoundException } from "../../exceptions/FleetNotFoundException";
+import { makeFleet } from "../../factories/fleetFactory";
+import { FleetRepositoryInMemory } from "../../repositories/FleetRepositoryInMemory";
+import { GetFleet } from "./getFleet";
 
 let fleetRepositoryInMemory: FleetRepositoryInMemory
 let getFleet: GetFleet
@@ -31,6 +31,6 @@ describe('Get Fleet', () => {
       await getFleet.execute({
         fleetId: 'fakeId'
       });
-    }).rejects.toThrow(NotFoundException);
+    }).rejects.toThrow(FleetNotFoundException);
   })
 })

@@ -1,7 +1,7 @@
-import { NotFoundException } from "@nestjs/common"
-import { makeCarrier } from "../../factories/carrierFactory"
-import { CarrierRepositoryInMemory } from "../../repositories/CarrierRepositoryInMemory"
-import { GetCarrier } from "./getCarrier"
+import { makeCarrier } from "../../factories/carrierFactory";
+import { CarrierRepositoryInMemory } from "../../repositories/CarrierRepositoryInMemory";
+import { GetCarrier } from "./getCarrier";
+import { CarrierNotFoundException } from "../../exceptions/CarrierNotFoundException";
 
 let carrierRepositoryInMemory: CarrierRepositoryInMemory
 let getCarrier: GetCarrier
@@ -33,6 +33,6 @@ describe('Get Carrier', () => {
         carrierId: 'fakeId'
       });
 
-    }).rejects.toThrow(NotFoundException);
+    }).rejects.toThrow(CarrierNotFoundException);
   });
 })

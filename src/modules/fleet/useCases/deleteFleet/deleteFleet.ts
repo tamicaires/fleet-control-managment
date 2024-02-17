@@ -1,5 +1,6 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { FleetRepository } from "../../repositories/FleetRepository";
+import { FleetNotFoundException } from "../../exceptions/FleetNotFoundException";
 
 interface DeleteFleetRequest {
   fleetId: string;
@@ -13,7 +14,7 @@ export class DeleteFleet {
     
     const fleet = await this.fleetRepository.findById(fleetId);
 
-    if(!fleet) throw new NotFoundException();
+    if(!fleet) throw new FleetNotFoundException();
 
     await this.fleetRepository.delete(fleetId);
   };

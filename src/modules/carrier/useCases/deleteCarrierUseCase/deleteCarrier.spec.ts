@@ -1,15 +1,15 @@
-import { NotFoundException } from "@nestjs/common";
 import { makeCarrier } from "../../factories/carrierFactory";
 import { CarrierRepositoryInMemory } from "../../repositories/CarrierRepositoryInMemory";
-import { DeleteCarrierUseCase } from "./deleteCarrier";
+import { DeleteCarrier } from "./deleteCarrier";
+import { CarrierNotFoundException } from "../../exceptions/CarrierNotFoundException";
 
 let carrierRepositoryInMemory: CarrierRepositoryInMemory;
-let deleteCarrierUseCase: DeleteCarrierUseCase;
+let deleteCarrier: DeleteCarrier;
 
 describe('Delete Carrier', () => {
   beforeEach(()=> {
     carrierRepositoryInMemory = new CarrierRepositoryInMemory()
-    deleteCarrierUseCase = new DeleteCarrierUseCase(carrierRepositoryInMemory)
+    deleteCarrier = new DeleteCarrier(carrierRepositoryInMemory)
   });
 
   it('Should be able to delete carrier', async () => {
@@ -19,7 +19,7 @@ describe('Delete Carrier', () => {
 
       carrierRepositoryInMemory.carriers = [carrier];
 
-      await deleteCarrierUseCase.execute({
+      await deleteCarrier.execute({
         carrierId: carrier.id
       });
 
@@ -29,10 +29,10 @@ describe('Delete Carrier', () => {
   it('Should be able to throw error when not find carrier', async () => {
 
     expect(async () => {
-      await deleteCarrierUseCase.execute({
+      await deleteCarrier.execute({
         carrierId: 'fakeId'
       });
-    }).rejects.toThrow(NotFoundException);
+    }).rejects.toThrow(CarrierNotFoundException);
     
   });
 });

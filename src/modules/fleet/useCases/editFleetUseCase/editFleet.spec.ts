@@ -1,8 +1,8 @@
-import { NotFoundException } from "@nestjs/common"
-import { FleetStatus } from "../../enum/fleet-status.enum"
-import { makeFleet } from "../../factories/fleetFactory"
-import { FleetRepositoryInMemory } from "../../repositories/FleetRepositoryInMemory"
-import { EditFleet } from "./editFleet"
+import { FleetStatus } from "../../enum/fleet-status.enum";
+import { makeFleet } from "../../factories/fleetFactory";
+import { FleetRepositoryInMemory } from "../../repositories/FleetRepositoryInMemory";
+import { EditFleet } from "./editFleet";
+import { FleetNotFoundException } from "../../exceptions/FleetNotFoundException";
 
 
 let fleetRepositoryInMemory: FleetRepositoryInMemory
@@ -51,7 +51,7 @@ describe('Edit Fleet', () => {
         km: '54525',
         status: FleetStatus.ATIVO
       });
-    }).rejects.toThrow(NotFoundException);
+    }).rejects.toThrow(FleetNotFoundException);
 
   });
 })

@@ -1,5 +1,6 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { CarrierRepository } from "../../repositories/CarrierRepository";
+import { CarrierNotFoundException } from "../../exceptions/CarrierNotFoundException";
 
 interface GetCarrierRequest {
   carrierId: string;
@@ -13,7 +14,7 @@ export class GetCarrier {
     
     const carrier = await this.carrierRepository.findById(carrierId);
 
-    if(!carrier) throw new NotFoundException();
+    if(!carrier) throw new CarrierNotFoundException();
 
     return carrier;
   };

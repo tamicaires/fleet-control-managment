@@ -1,7 +1,7 @@
-import { NotFoundException } from "@nestjs/common";
 import { makeFleet } from "../../factories/fleetFactory";
 import { FleetRepositoryInMemory } from "../../repositories/FleetRepositoryInMemory";
 import { DeleteFleet } from "./deleteFleet";
+import { FleetNotFoundException } from "../../exceptions/FleetNotFoundException";
 
 
 let fleetRepositoryInMemory: FleetRepositoryInMemory
@@ -27,13 +27,13 @@ describe('Delete Fleet', () => {
   });
 
 
-  it('Should be able to throw error when not found fleet', () => {
+  it('Should be able to throw error when not found fleet', async () => {
 
     expect(async () => {
       await deleteFleet.execute({
         fleetId: 'fakeId'
       });
 
-    }).rejects.toThrow(NotFoundException);
+    }).rejects.toThrow(FleetNotFoundException);
   });
 })

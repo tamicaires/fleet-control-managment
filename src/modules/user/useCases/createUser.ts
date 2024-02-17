@@ -3,6 +3,7 @@ import { UserRepository } from "../repositories/UserRepository";
 import { User } from "../entities/User";
 import { hash } from "bcrypt";
 import { Role } from "../enum/Roles";
+import { UserWithSameEmailException } from "../exceptions/UserWithSameEmailException";
 
 
 interface CreateUserRequest {
@@ -18,12 +19,16 @@ export class CreateUser {
 
   async execute({ email, name, password, role }: CreateUserRequest) {
 
+    const userAlredyExist = await this.userRepository.findByEmail(email);
+
+    if(userAlredyExist) throw new UserWithSameEmailException();
+
     const user = new User({
       email,
       name,
       password: await hash(password, 10),
       role,
-    })
+    });
 
     await this.userRepository.create(user);
 

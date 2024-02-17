@@ -1,7 +1,8 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { FleetStatus } from "../../enum/fleet-status.enum";
 import { FleetRepository } from "../../repositories/FleetRepository";
 import { updateFleetProperties } from "src/utils/fleetUtils";
+import { FleetNotFoundException } from "../../exceptions/FleetNotFoundException";
 
 interface EditFleetRequest {
   fleetId: string;
@@ -21,7 +22,7 @@ export class EditFleet {
   async execute(data: EditFleetRequest) {
     const fleet = await this.fleetRepository.findById(data.fleetId);
 
-    if(!fleet) throw new NotFoundException();
+    if(!fleet) throw new FleetNotFoundException();
 
     updateFleetProperties(fleet, data);
 

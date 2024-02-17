@@ -1,8 +1,8 @@
-import { CarrierStatus } from "../../enum/carrier-status.enum"
-import { makeCarrier } from "../../factories/carrierFactory"
-import { CarrierRepositoryInMemory } from "../../repositories/CarrierRepositoryInMemory"
-import { EditCarrier } from "./editCarrier"
-import { NotFoundException } from "@nestjs/common"
+import { CarrierStatus } from "../../enum/carrier-status.enum";
+import { CarrierNotFoundException } from "../../exceptions/CarrierNotFoundException";
+import { makeCarrier } from "../../factories/carrierFactory";
+import { CarrierRepositoryInMemory } from "../../repositories/CarrierRepositoryInMemory";
+import { EditCarrier } from "./editCarrier";
 
 let carrierRepositoryInMemory: CarrierRepositoryInMemory
 let editCarrier: EditCarrier
@@ -52,6 +52,6 @@ describe('Edit Carrier', () => {
         status: CarrierStatus.ATIVO
       });
 
-    }).rejects.toThrow(NotFoundException);
+    }).rejects.toThrow(CarrierNotFoundException);
   })
 })
