@@ -1,4 +1,6 @@
 import { CarrierStatus } from "../../enum/carrier-status.enum";
+import { CarrierWithSameNameException } from "../../exceptions/CarrierWithSameNameException";
+import { makeCarrier } from "../../factories/carrierFactory";
 import { CarrierRepositoryInMemory } from "../../repositories/CarrierRepositoryInMemory";
 import { CreateCarrier } from "./createCarrier";
 
@@ -22,5 +24,19 @@ describe('Create Carrier', () => {
       })
 
       expect(carrierRepositoryInMemory.carriers).toEqual([carrier]);
+  });
+
+  it('Should be able to throw error when create carrier with already exists carrier', async () => {
+    const carrier = makeCarrier({});
+
+    carrierRepositoryInMemory.carriers = [carrier];
+
+    expect([carrier]).toEqual(carrierRepositoryInMemory.carriers);
+
+    expect(async () => createCarrier.execute(
+      makeCarrier({
+        carrierName: carrier.carrierName
+      })
+    )).rejects.toThrow(CarrierWithSameNameException)
   });
 });

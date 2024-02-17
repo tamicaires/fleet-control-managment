@@ -1,10 +1,10 @@
 import { HttpStatus } from "@nestjs/common";
 import { AppException } from "src/exceptions/appException";
 
-export class UserWithSameEmailException extends AppException {
+export class CarrierWithSameNameException extends AppException {
   constructor(){
     super({
-      message: 'Email já cadastrado',
+      message: 'Transportadora já existe',
       status: HttpStatus.CONFLICT
     });
   };

@@ -9,4 +9,5 @@ export abstract class CarrierRepository {
     page: number,
     perPage: number,
   ): Promise<Carrier[] | null>;
+  abstract findOne(carrierName: string): Promise<Carrier | null>;
 }

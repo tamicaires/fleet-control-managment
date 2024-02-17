@@ -49,5 +49,13 @@ export class PrismaCarrierRepository implements CarrierRepository {
     return carriers.map(PrismaCarrierMapper.toDomain)
   };
 
-  
-}
+  async findOne(carrierName: string): Promise<Carrier | null> {
+    const carrier = await this.prisma.carrier.findUnique({
+      where: { carrierName }
+    });
+
+    if(!carrier) return null;
+
+    return PrismaCarrierMapper.toDomain(carrier);
+  };
+};

@@ -31,4 +31,14 @@ export class CarrierRepositoryInMemory implements CarrierRepository {
     return this.carriers
       .slice((page - 1) * perPage, page * perPage)
   }
+
+  async findOne(carrierName: string): Promise<Carrier | null> {
+    const carrier = await this.carriers.find(
+      carrier => carrier.carrierName === carrierName
+    );
+
+    if(!carrier) return null;
+
+    return carrier;
+  };
 }
