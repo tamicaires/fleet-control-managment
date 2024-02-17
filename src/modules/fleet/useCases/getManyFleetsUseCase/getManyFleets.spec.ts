@@ -19,6 +19,8 @@ describe('Get Many Fleets', () => {
 
     const result = await getManyFleets.execute({});
 
+    expect(fleetRepositoryInMemory.fleets).toHaveLength(10)
+
     expect(result).toEqual(fleets);
   });
 })

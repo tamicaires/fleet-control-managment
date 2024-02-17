@@ -42,7 +42,7 @@ export class PrismaFleetRepository implements FleetRepository {
 
   async findMany(page: number, perPage: number): Promise<Fleet[]> {
     const fleets = await this.prisma.fleet.findMany({
-      take: page,
+      take: perPage,
       skip: (page - 1) * perPage
     });
 
