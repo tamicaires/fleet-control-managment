@@ -1,38 +1,41 @@
-import { IsNotEmpty, IsString } from "class-validator";
+import { IsNotEmptyCustom } from "src/infra/http/classValidator/decorators/IsNotEmptyCustom";
+import { IsStringCustom } from "src/infra/http/classValidator/decorators/IsStringCustom";
+import { MinLengthCustom } from "src/infra/http/classValidator/decorators/MinLengthCustom";
 import { FleetStatus } from "src/modules/fleet/enum/fleet-status.enum";
 
 export class CreateFleetBody {
 
-  @IsString()
-  @IsNotEmpty()
+  @IsStringCustom()
+  @IsNotEmptyCustom()
+  @MinLengthCustom(5)
   fleetNumber: string;
   
-  @IsString()
-  @IsNotEmpty()
+  @IsStringCustom()
+  @IsNotEmptyCustom()
   plate: string;
 
-  @IsString()
-  @IsNotEmpty()
+  @IsStringCustom()
+  @IsNotEmptyCustom()
   first_trailer_plate: string;
 
-  @IsString()
-  @IsNotEmpty()
+  @IsStringCustom()
+  @IsNotEmptyCustom()
   second_trailer_plate: string;
 
-  @IsString()
-  @IsNotEmpty()
+  @IsStringCustom()
+  @IsNotEmptyCustom()
   third_trailer_plate: string;
 
-  @IsString()
-  @IsNotEmpty()
+  @IsStringCustom()
+  @IsNotEmptyCustom()
   km: string;
 
-  @IsString()
-  @IsNotEmpty()
+  @IsStringCustom()
+  @IsNotEmptyCustom()
   carrierId: string;
 
-  @IsString()
-  @IsNotEmpty()
+  @IsStringCustom()
+  @IsNotEmptyCustom()
   status: FleetStatus;
 
 }

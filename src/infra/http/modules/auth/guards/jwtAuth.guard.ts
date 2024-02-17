@@ -1,11 +1,11 @@
 import { 
   ExecutionContext, 
   Injectable, 
-  UnauthorizedException 
 } from "@nestjs/common";
 import { AuthGuard } from "@nestjs/passport";
 import { IS_PUBLIC_KEY } from "../decorators/is-public.decorator";
 import { Reflector } from "@nestjs/core";
+import { InvalidAccessTokenException } from "src/exceptions/InvalidAccessTokenException";
 
 @Injectable()
 export class JwtAuthGuard extends AuthGuard('jwt') {
@@ -25,10 +25,10 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
     return super.canActivate(context);
   }
 
-  handleRequest(err, user, info) {
+  handleRequest(err, user) {
 
     if (err || !user) {
-      throw err || new UnauthorizedException();
+      throw err || new InvalidAccessTokenException();
     }
     return user;
   }

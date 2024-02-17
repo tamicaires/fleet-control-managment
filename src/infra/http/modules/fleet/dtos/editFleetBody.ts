@@ -1,37 +1,38 @@
-import { IsOptional, IsString } from "class-validator";
+import { IsOptional } from "class-validator";
+import { IsStringCustom } from "src/infra/http/classValidator/decorators/IsStringCustom";
 import { FleetStatus } from "src/modules/fleet/enum/fleet-status.enum";
 
 export class EditFleetBody{
 
-  @IsString()
+  @IsStringCustom()
   @IsOptional()
   fleetNumber: string;
   
-  @IsString()
+  @IsStringCustom()
   @IsOptional()
   plate: string;
 
-  @IsString()
+  @IsStringCustom()
   @IsOptional()
   first_trailer_plate: string;
 
-  @IsString()
+  @IsStringCustom()
   @IsOptional()
   second_trailer_plate: string;
 
-  @IsString()
+  @IsStringCustom()
   @IsOptional()
   third_trailer_plate: string;
 
-  @IsString()
+  @IsStringCustom()
   @IsOptional()
   km: string;
 
-  @IsString()
+  @IsStringCustom()
   @IsOptional()
   carrierId: string;
 
-  @IsString()
+  @IsStringCustom()
   @IsOptional()
   status: FleetStatus;
 };

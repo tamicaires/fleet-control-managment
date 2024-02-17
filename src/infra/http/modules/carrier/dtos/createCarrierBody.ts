@@ -1,21 +1,22 @@
-import { IsNotEmpty, IsString } from "class-validator";
+import { IsNotEmptyCustom } from "src/infra/http/classValidator/decorators/IsNotEmptyCustom";
+import { IsStringCustom } from "src/infra/http/classValidator/decorators/IsStringCustom";
 import { CarrierStatus } from "src/modules/carrier/enum/carrier-status.enum";
 
 export class CreateCarrierBody {
 
-  @IsString()
-  @IsNotEmpty()
+  @IsStringCustom()
+  @IsNotEmptyCustom()
   carrierName: string;
 
-  @IsString()
-  @IsNotEmpty()
+  @IsStringCustom()
+  @IsNotEmptyCustom()
   managerName: string;
 
-  @IsString()
-  @IsNotEmpty()
+  @IsStringCustom()
+  @IsNotEmptyCustom()
   managerPhone: string;
 
-  @IsString()
-  @IsNotEmpty()
+  @IsStringCustom()
+  @IsNotEmptyCustom()
   status: CarrierStatus;
 }
