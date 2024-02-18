@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Query } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post, Put, Query, UseGuards } from "@nestjs/common";
 import { CreateFleetBody } from "./dtos/createFleetBody";
 import { CreateFleet } from "src/modules/fleet/useCases/createFleetUseCase/createFleet";
 import { EditFleet } from "src/modules/fleet/useCases/editFleetUseCase/editFleet";
@@ -8,6 +8,8 @@ import { DeleteFleet } from "src/modules/fleet/useCases/deleteFleet/deleteFleet"
 import { GetFleet } from "src/modules/fleet/useCases/getFleetUseCase/getFleet";
 import { FleetViewModel } from "./viewModel/FleetViewModel";
 import { GetManyFleets } from "src/modules/fleet/useCases/getManyFleetsUseCase/getManyFleets";
+import { AuthorizationGuard } from "../auth/guards/authorization.guard";
+import { Role } from "../auth/decorators/roles.decorator";
 
 @Controller('fleets')
 export class FleetController {
@@ -18,8 +20,10 @@ export class FleetController {
     private getFleetUseCase: GetFleet,
     private getManyFleetsUseCase: GetManyFleets
     ) {}
-
+  
   @Post()
+  @UseGuards(AuthorizationGuard)
+  @Role('ADMIN')
   async createFleet(@Body() createFleetBody: CreateFleetBody){
     const fleetData = createFleetBody;
     const fleet = await this.createFleetUseCase.execute(fleetData);
@@ -27,6 +31,8 @@ export class FleetController {
   };
 
   @Put(':id')
+  @UseGuards(AuthorizationGuard)
+  @Role('ADMIN')
   async editFleet(
     @Param('id') fleetId: string,
     @Body() editFleetBody: EditFleetBody
@@ -36,6 +42,8 @@ export class FleetController {
   };
 
   @Delete(':id')
+  @UseGuards(AuthorizationGuard)
+  @Role('ADMIN')
   async DeleteFleet(@Param('id') fleetId: string){
     await this.deleteFleetUseCase.execute({ fleetId });
   };

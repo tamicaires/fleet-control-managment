@@ -1,11 +1,13 @@
 import { 
   Injectable, 
   CanActivate, 
-  ExecutionContext } from '@nestjs/common';
+  ExecutionContext, 
+} from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { Observable } from 'rxjs';
 import { ROLES_KEY } from '../decorators/roles.decorator';
 import { Role } from 'src/modules/user/enum/Roles'; 
+import { ForbiddenUserRoleException } from 'src/exceptions/ForbiddenUserRoleException';
 
 @Injectable()
 export class AuthorizationGuard implements CanActivate {
@@ -21,7 +23,8 @@ export class AuthorizationGuard implements CanActivate {
 
     const userRole = request.user.role;
 
-    if (requiredRoles !== userRole) return false;
+    if (requiredRoles !== userRole) {
+      throw new ForbiddenUserRoleException()}
 
     return true;
   }

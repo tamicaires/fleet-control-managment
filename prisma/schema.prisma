@@ -28,8 +28,6 @@ model User {
 enum Role {
   USER
   ADMIN
-  CONSULTER
-  MANAGER
 }
 
 model Note {
@@ -52,8 +50,8 @@ model Fleet {
   third_trailer_plate   String
   km                    String
   status                Status    @default(ATIVO) 
-  carrier               Carrier?  @relation(fields: [carrierId], references: [id])
-  carrierId             String?   @map("carrier_id") 
+  carrier               Carrier  @relation(fields: [carrierId], references: [id])
+  carrierId             String   @map("carrier_id") 
 
   createdAt   DateTime @default(now()) @map("created_at")
   updatedAt   DateTime @default(now()) @map("updated_at")

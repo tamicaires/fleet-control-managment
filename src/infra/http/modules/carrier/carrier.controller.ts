@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Query } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post, Put, Query, UseGuards } from "@nestjs/common";
 import { CreateCarrier } from "src/modules/carrier/useCases/createCarrierUseCase/createCarrier";
 import { CreateCarrierBody } from "./dtos/createCarrierBody";
 import { CarrierViewModel } from "./viewModels/CarrierViewModel";
@@ -7,6 +7,8 @@ import { EditCarrierBody } from "./dtos/editCarrierBody";
 import { DeleteCarrier } from "src/modules/carrier/useCases/deleteCarrierUseCase/deleteCarrier";
 import { GetCarrier } from "src/modules/carrier/useCases/getCarrierUseCase/getCarrier";
 import { GetManyCarriers } from "src/modules/carrier/useCases/getAllCarrriersUseCase/getManyCarriers";
+import { AuthorizationGuard } from "../auth/guards/authorization.guard";
+import { Role } from "../auth/decorators/roles.decorator";
 
 @Controller('carriers')
 export class CarrierController {
@@ -19,6 +21,8 @@ export class CarrierController {
   ) {}
 
   @Post()
+  @UseGuards(AuthorizationGuard)
+  @Role('ADMIN')
   async createCarrier(
     @Body() body: CreateCarrierBody) {
     const {
@@ -39,6 +43,8 @@ export class CarrierController {
   };
 
   @Put(':id')
+  @UseGuards(AuthorizationGuard)
+  @Role('ADMIN')
   async editCarrier(
     @Param('id') carrierId: string,
     @Body() body: EditCarrierBody
@@ -55,6 +61,8 @@ export class CarrierController {
   };
 
   @Delete(':id')
+  @UseGuards(AuthorizationGuard)
+  @Role('ADMIN')
   async deleteCarrier(
     @Param('id') carrierId: string
   ) {
