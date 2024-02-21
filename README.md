@@ -1,50 +1,65 @@
-# Clean Architecture Node.js com Typescript, Node.JS e Nest.JS
+# :truck: Sistema de Controle de Frotas
 
-Este repositório contém um projeto Node.js desenvolvido com o framework Nest.js utilizando TypeScript e seguindo os princípios da Clean Architecture. O objetivo deste projeto é demonstrar a implementação de uma arquitetura limpa, separando as responsabilidades em camadas e aplicando injeção de dependências para facilitar a manutenção e a escalabilidade do código.
+Bem-vindo ao repositório do nosso projeto de Sistema de Controle de Frotas! Este projeto é construído usando NestJS, TypeScript, Node.js, Prisma ORM e segue os princípios da Arquitetura Limpa e os princípios de design SOLID.
+
+## Sumário
+
+- [Introdução](#introdução)
+- [Recursos](#recursos)
+- [Autenticação e Autorização](#autenticação-e-autorização)
+- [Funcionalidades](#funcionalidades)
+- [Tecnologias Utilizadas](#tecnologias-utilizadas)
+- [Começando](#começando)
+- [Contribuindo](#contribuindo)
+- [Licença](#licença)
+
+## Introdução
+
+Nosso Sistema de Controle de Frotas foi projetado para fornecer uma solução abrangente para controlar frotas, transportadoras e anotações de usuários de forma eficiente. Ele incorpora tecnologias modernas e princípios de design de software para garantir escalabilidade, manutenibilidade e confiabilidade.
+
+## Recursos
+
+- Autenticação usando tokens JWT
+- Autorização baseada em funções
+- Operações de criação, recuperação, atualização e exclusão (CRUD) para transportadoras e frotas
+- Gerenciamento de anotações de usuários com acesso restrito com base no criador
+- Suporte à paginação para operações findMany
+- Testes unitários utilizando Jest
+
+## Autenticação e Autorização
+
+Implementamos autenticação baseada em tokens JWT para acesso do usuário ao sistema. Os usuários são atribuídos funções (como admin ou usuário), e a autorização baseada em funções restringe o acesso a determinadas funcionalidades. Por exemplo, apenas usuários com a função admin podem realizar operações de criação, edição e exclusão em transportadoras e frotas, enquanto usuários com a função usuário têm acesso somente leitura.
+
+## Funcionalidades
+
+- **Controle de Transportadoras e Frotas**: Os usuários podem realizar operações CRUD em transportadoras e frotas, incluindo criação, leitura, atualização e exclusão de registros.
+- **Anotações de Usuários**: Os usuários podem criar anotações e só podem visualizar as anotações que criaram.
+- **Controle de Acesso Baseado em Funções**: Usuários admin têm acesso total às funcionalidades de controle de transportadoras e frotas, enquanto usuários regulares têm acesso restrito.
 
 ## Tecnologias Utilizadas
-- Node.js
-- Nest.js
-- TypeScript
 
-## Conceitos Demonstrados
-###  Clean Architecture
-A Clean Architecture é um estilo de arquitetura de software que promove a separação de preocupações em camadas, com uma clara definição de dependências, tornando o código mais modular e testável. Neste projeto, as camadas são organizadas da seguinte forma:
+- **NestJS**: Um framework Node.js progressivo para construir aplicativos eficientes, confiáveis e escaláveis no lado do servidor.
+- **TypeScript**: Um superset tipado do JavaScript que compila para JavaScript simples.
+- **Node.js**: Um ambiente de execução JavaScript construído no motor JavaScript V8 do Chrome.
+- **Prisma ORM**: Um moderno toolkit de banco de dados para TypeScript e Node.js.
+- **Arquitetura Limpa e Princípios SOLID**: Princípios de design para construir arquiteturas de software escaláveis e manuteníveis.
 
-### Presentation: 
-Camada responsável pela interação com o cliente, incluindo controladores, roteamento e DTOs (Data Transfer Objects).
+## Começando
 
-### Application: 
-Camada que contém os casos de uso da aplicação, onde são implementadas as regras de negócio.
+Para começar com nosso Sistema de Controle de Frotas:
 
-### Domain: 
-Camada que define os modelos de domínio e as interfaces dos repositórios.
+1. Clone este repositório.
+2. Instale as dependências usando `npm install`.
+3. Configure suas configurações de banco de dados e variáveis de ambiente.
+4. Execute os testes unitários usando `npm test`.
+5. Execute o aplicativo usando `npm start`.
 
-### Infrastructure: 
-Camada que implementa os detalhes técnicos, como acesso a banco de dados e integrações externas.
+## Contribuindo
 
-### Injeção de Dependências
+Aceitamos contribuições da comunidade para melhorar e aprimorar nosso Sistema de Controle de Frotas. Para contribuir, por favor faça um fork deste repositório, faça suas alterações e envie um pull request descrevendo as alterações propostas.
 
-A injeção de dependências é um padrão de design que permite desacoplar componentes e facilitar a substituição de implementações. No Nest.js, a injeção de dependências é suportada nativamente, o que torna mais fácil a configuração e a gestão das dependências entre os diferentes módulos e componentes da aplicação.
+## Licença
 
-### Módulos
-O Nest.js organiza a aplicação em módulos, que são conjuntos de componentes relacionados. Cada módulo pode ter seus próprios controladores, provedores de serviços e outros artefatos. Isso ajuda a manter o código modular e coeso, facilitando a compreensão e a manutenção.
+Este projeto está licenciado sob a [Licença MIT](LICENSE).
 
-## Executando o Projeto
-Para executar este projeto localmente, siga as instruções abaixo:
-
-1. Clone este repositório para o seu ambiente local.
-2. Certifique-se de ter o Node.js e o npm instalados em sua máquina.
-3. Execute npm install para instalar as dependências do projeto.
-4. Utilize os scripts npm fornecidos para iniciar a aplicação:  
-```npm start:``` Inicia a aplicação em modo de produção.  
-```npm run start:dev:``` Inicia a aplicação em modo de desenvolvimento com suporte a hot-reload.  
-```npm run test:.``` Executa os testes automatizados  
-```npm run build:``` Compila o código TypeScript em JavaScript para produção.  
-Acesse a aplicação em ```http://localhost:3000``` (ou a porta configurada).
-
-# Contribuição
-Contribuições são bem-vindas! Sinta-se à vontade para abrir uma issue para relatar problemas, sugerir melhorias ou enviar pull requests com novos recursos ou correções de bugs.
-
-# Licença
-Este projeto está licenciado sob a Licença MIT. Sinta-se à vontade para usar, modificar e distribuir o código conforme necessário.
+Obrigado por considerar nosso projeto de Sistema de Controle de Frotas. Esperamos que ele forneça insights valiosos sobre nosso uso de NestJS, TypeScript, Jest e princípios de Arquitetura Limpa em aplicativos do mundo real. Se você tiver alguma dúvida ou comentário, sinta-se à vontade para entrar em contato conosco.
