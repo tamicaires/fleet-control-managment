@@ -1,4 +1,4 @@
-import { Note } from '../entities/note';
+import { Note } from '../entities/Note';
 
 type Override = Partial<Note> ;
 
